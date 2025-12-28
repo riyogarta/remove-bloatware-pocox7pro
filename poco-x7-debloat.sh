@@ -69,6 +69,7 @@ uninstall_package() {
     echo -ne "  Menghapus ${name}... "
     
     RESULT=$(adb shell pm uninstall -k --user 0 "$package" 2>&1)
+    # Alternatif: adb shell cmd package uninstall -k --user 0 "$package"
     
     if [[ "$RESULT" == *"Success"* ]]; then
         echo -e "${GREEN}OK${NC}"
@@ -86,7 +87,8 @@ restore_package() {
     
     echo -ne "  Restore ${name}... "
     
-    RESULT=$(adb shell cmd package install-existing "$package" 2>&1)
+    RESULT=$(adb shell pm install-existing --user 0 "$package" 2>&1)
+    # Alternatif: adb shell cmd package install-existing "$package"
     
     if [[ "$RESULT" == *"installed"* ]]; then
         echo -e "${GREEN}OK${NC}"
