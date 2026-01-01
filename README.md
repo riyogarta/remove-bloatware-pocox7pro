@@ -1,48 +1,55 @@
-# POCO X7 Pro Debloater
+# Xiaomi Debloater Scripts
 
 [![Platform](https://img.shields.io/badge/Platform-Linux-orange)](https://github.com/riyogarta/remove-bloatware-pocox7pro)
-[![Device](https://img.shields.io/badge/Device-POCO%20X7%20Pro-blue)](https://github.com/riyogarta/remove-bloatware-pocox7pro)
-[![HyperOS](https://img.shields.io/badge/HyperOS-3-green)](https://github.com/riyogarta/remove-bloatware-pocox7pro)
-[![Android](https://img.shields.io/badge/Android-16-brightgreen)](https://github.com/riyogarta/remove-bloatware-pocox7pro)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-Script untuk menghapus bloatware dari **POCO X7 Pro 5G** yang menjalankan **HyperOS 3 / Android 16**. Tanpa root, aman, dan bisa di-restore kapan saja.
+Script untuk menghapus bloatware dari HP Xiaomi menggunakan ADB. Tanpa root, aman, dan bisa di-restore kapan saja.
+
+## Supported Devices
+
+| Device | OS | Script | Total Bloatware |
+|--------|-----|--------|-----------------|
+| POCO X7 Pro 5G | HyperOS 3 / Android 16 | `poco-x7-debloat.sh` | 43 apps |
+| Redmi Note 14 5G | HyperOS / Android 14+ | `redmi-note14-debloat.sh` | 41 apps |
 
 ## Fitur
 
-- Hapus hingga **45 bloatware** sekaligus
 - **Tanpa root** - menggunakan ADB
-- **Aman** - tidak menghapus file sistem, hanya "menyembunyikan" app
+- **Aman** - uninstall untuk user saat ini, master instalasi tetap ada di sistem
 - **Reversible** - bisa restore kapan saja
 - **Menu interaktif** - pilih kategori yang mau dihapus
 - **Warna terminal** - output yang mudah dibaca
 
 ## Bloatware yang Dapat Dihapus
 
-| Kategori | Jumlah | Contoh Apps |
-|----------|--------|-------------|
-| Xiaomi/MIUI | 22 | Mi Browser, GetApps, Mi Video, Mi Music, Analytics, MSA (iklan) |
-| Facebook | 3 | App Manager, Services, System |
-| Microsoft | 3 | App Manager, Device Integration, Cross Device |
-| Debug/Developer | 6 | Engineer Mode, Logger UI, YGPS |
-| Google Apps | 10 | Chrome, YouTube, Maps, Photos, Meet, Gemini AI |
-| Theme Manager | 1 | Theme Manager (opsional, ada peringatan) |
+| Kategori | POCO X7 Pro | Redmi Note 14 | Contoh Apps |
+|----------|-------------|---------------|-------------|
+| Xiaomi/MIUI | 21 | 19 | Mi Browser, GetApps, Mi Video, Mi Music, Analytics, MSA (iklan) |
+| Facebook | 3 | 3 | App Manager, Services, System |
+| Microsoft | 3 | 1 | App Manager, Device Integration, Cross Device |
+| Amazon | - | 1 | App Manager |
+| Debug/Developer | 6 | - | Engineer Mode, Logger UI, YGPS (untuk service center) |
+| Google Apps | 10 | 11 | Chrome, YouTube, Maps, Photos, Meet, Gemini AI |
+| Third-party | - | 6 | WPS Office, iQIYI, Disney+, Flickr |
+| Theme Manager | 1 | 1 | Theme Manager (opsional, ada peringatan) |
 
 ### Yang TIDAK Dihapus (Tetap Aman)
 
 - Play Store & Play Services
 - Gmail & Hey Google
 - Mi Account & Find Device
+- MIUI Gallery
 - Kamera, Screenshot, Screen Recorder
-- AI Vision, AI Subtitles, Translate
+- AI Vision, Scanner, Compass
 - Security Center
+- Debug/Developer Tools (Redmi Note 14) - untuk keperluan service center
 
 ## Persyaratan
 
 - Linux (Ubuntu/Debian/Linux Mint) atau WSL
 - ADB terinstall
 - Kabel USB
-- POCO X7 Pro dengan USB Debugging aktif
+- HP Xiaomi dengan USB Debugging aktif
 
 ## Instalasi
 
@@ -57,7 +64,7 @@ sudo apt install adb
 ```bash
 git clone https://github.com/riyogarta/remove-bloatware-pocox7pro.git
 cd remove-bloatware-pocox7pro
-chmod +x poco-x7-debloat.sh
+chmod +x *.sh
 ```
 
 ### 3. Aktifkan USB Debugging di HP
@@ -88,25 +95,33 @@ XXXXXXXX    device
 
 ## Penggunaan
 
+### POCO X7 Pro 5G
+
 ```bash
 ./poco-x7-debloat.sh
 ```
 
-### Menu Opsi
+### Redmi Note 14 5G
+
+```bash
+./redmi-note14-debloat.sh
+```
+
+### Contoh Menu
 
 ```
 -- HAPUS --
-[1] Hapus Xiaomi/MIUI bloatware (22 apps)
-[2] Hapus Facebook bloatware (3 apps)
-[3] Hapus Microsoft bloatware (3 apps)
-[4] Hapus Debug/Developer tools (6 apps)
-[5] Hapus Google apps (10 apps)
-[6] Hapus Theme Manager (1 app) - ada peringatan
-[7] Hapus SEMUA kecuali Theme Manager (44 apps)
+[1] Hapus Xiaomi/MIUI bloatware
+[2] Hapus Facebook bloatware
+[3] Hapus Microsoft bloatware
+[4] Hapus Debug/Developer tools
+[5] Hapus Google apps
+...
+[9] Hapus SEMUA kecuali Theme Manager
 
 -- RESTORE --
-[8] Restore Theme Manager
-[9] Restore SEMUA aplikasi
+[r] Restore Theme Manager
+[a] Restore SEMUA aplikasi
 
 [0] Keluar
 ```
@@ -114,7 +129,7 @@ XXXXXXXX    device
 ## FAQ
 
 **Q: Apakah aman? HP bisa brick?**
-A: Aman. Metode ini hanya "menyembunyikan" app dari user, bukan menghapus permanen. File tetap ada di sistem. HP tidak bisa brick.
+A: Aman. Metode ini uninstall app untuk user saat ini saja (`pm uninstall --user 0`), bukan menghapus permanen dari sistem. Master instalasi tetap ada, jadi bisa di-restore kapan saja. Tanpa root, ADB tidak bisa menghapus permanen file sistem. HP tidak bisa brick.
 
 **Q: Bisa dikembalikan?**
 A: Bisa! Jalankan script lagi dan pilih opsi Restore. Atau lakukan factory reset.
@@ -123,7 +138,7 @@ A: Bisa! Jalankan script lagi dan pilih opsi Restore. Atau lakukan factory reset
 A: Tidak perlu root.
 
 **Q: Google Account masih bisa dipakai?**
-A: Ya! Play Store, Play Services, Gmail, Hey Google tidak dihapus. Login & sync tetap normal.
+A: Ya! Play Store, Play Services, Gmail tidak dihapus. Login & sync tetap normal.
 
 **Q: Mau service HP, gimana?**
 A: Restore opsi Debug/Developer tools sebelum bawa ke service center.
@@ -141,10 +156,10 @@ A: Menu Settings → Personalization tidak bisa diklik. Pilihan ringtone/font te
 
 ## Tested On
 
-- **Device:** POCO X7 Pro 5G
-- **OS:** HyperOS 3
-- **Android:** 16
-- **ADB Host:** Linux Mint
+| Device | OS | Android | ADB Host |
+|--------|-----|---------|----------|
+| POCO X7 Pro 5G | HyperOS 3 | 16 | Linux Mint |
+| Redmi Note 14 5G | HyperOS | 14+ | Linux Mint |
 
 ## Disclaimer
 
@@ -156,8 +171,8 @@ MIT License - Silakan gunakan, modifikasi, dan distribusikan.
 
 ## Contributing
 
-Pull request welcome! Jika ada package bloatware yang terlewat atau ada bug, silakan buat issue atau PR.
+Pull request welcome! Jika ada package bloatware yang terlewat, device baru, atau bug, silakan buat issue atau PR.
 
 ---
 
-**Dibuat untuk komunitas POCO X7 Pro Indonesia**
+**Dibuat untuk komunitas Xiaomi Indonesia**
