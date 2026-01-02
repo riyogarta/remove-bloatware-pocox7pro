@@ -9,7 +9,7 @@ Script untuk menghapus bloatware dari HP Xiaomi menggunakan ADB. Tanpa root, ama
 
 | Device | OS | Script | Total Bloatware |
 |--------|-----|--------|-----------------|
-| POCO X7 Pro 5G | HyperOS 3 / Android 16 | `poco-x7-debloat.sh` | 43 apps |
+| POCO X7 Pro 5G | HyperOS 3 / Android 16 | `poco-x7-debloat.sh` | 42 apps |
 | Redmi Note 14 5G | HyperOS / Android 14+ | `redmi-note14-debloat.sh` | 41 apps |
 
 ## Fitur
@@ -24,7 +24,7 @@ Script untuk menghapus bloatware dari HP Xiaomi menggunakan ADB. Tanpa root, ama
 
 | Kategori | POCO X7 Pro | Redmi Note 14 | Contoh Apps |
 |----------|-------------|---------------|-------------|
-| Xiaomi/MIUI | 21 | 19 | Mi Browser, GetApps, Mi Video, Mi Music, Analytics, MSA (iklan) |
+| Xiaomi/MIUI | 20 | 19 | Mi Browser, GetApps, Mi Video, Mi Music, Analytics, MSA (iklan) |
 | Facebook | 3 | 3 | App Manager, Services, System |
 | Microsoft | 3 | 1 | App Manager, Device Integration, Cross Device |
 | Amazon | - | 1 | App Manager |
@@ -43,6 +43,7 @@ Script untuk menghapus bloatware dari HP Xiaomi menggunakan ADB. Tanpa root, ama
 - AI Vision, Scanner, Compass
 - Security Center
 - Debug/Developer Tools (Redmi Note 14) - untuk keperluan service center
+- Xiaomi Discover (POCO X7 Pro) - diperlukan untuk Update System Apps
 
 ## Persyaratan
 
@@ -153,6 +154,8 @@ A: Menu Settings → Personalization tidak bisa diklik. Pilihan ringtone/font te
 > **Debug/Developer Tools:** Dibutuhkan teknisi jika HP rusak. Restore sebelum bawa ke service center.
 
 > **Theme Manager:** Jika dihapus, Settings → Personalization tidak bisa diakses.
+
+> **Xiaomi Discover:** Tidak dihapus karena berisi activity untuk **Update System Apps** di Settings. Jika dihapus, menu Update System Apps tidak merespons saat ditap.
 
 ## Tested On
 

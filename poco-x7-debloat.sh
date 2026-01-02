@@ -120,7 +120,7 @@ remove_all() {
     uninstall_package "com.xiaomi.glgm" "Xiaomi Games"
     uninstall_package "com.xiaomi.mipicks" "GetApps Store"
     uninstall_package "com.xiaomi.payment" "Mi Payment"
-    uninstall_package "com.xiaomi.discover" "Xiaomi Discover"
+    # com.xiaomi.discover TIDAK DIHAPUS - diperlukan untuk Update System Apps di Settings
     uninstall_package "com.mi.globalbrowser" "Mi Browser"
     uninstall_package "com.mi.globalminusscreen" "App Vault"
     uninstall_package "com.miui.thirdappassistant" "Third Party Assistant"
@@ -154,7 +154,7 @@ restore_all() {
     restore_package "com.xiaomi.glgm" "Xiaomi Games"
     restore_package "com.xiaomi.mipicks" "GetApps Store"
     restore_package "com.xiaomi.payment" "Mi Payment"
-    restore_package "com.xiaomi.discover" "Xiaomi Discover"
+    # com.xiaomi.discover tidak perlu restore - tidak dihapus
     restore_package "com.mi.globalbrowser" "Mi Browser"
     restore_package "com.mi.globalminusscreen" "App Vault"
     restore_package "com.miui.thirdappassistant" "Third Party Assistant"
@@ -299,7 +299,7 @@ remove_everything() {
     remove_microsoft
     remove_debug
     remove_google
-    echo -e "\n${GREEN}>> TOTAL 43 bloatware dihapus!${NC}"
+    echo -e "\n${GREEN}>> TOTAL 42 bloatware dihapus!${NC}"
     echo -e "${YELLOW}>> Theme Manager TIDAK dihapus (pilih menu [6] jika mau hapus)${NC}"
 }
 
@@ -323,13 +323,13 @@ show_menu() {
     echo -e "${YELLOW}Pilih opsi:${NC}"
     echo ""
     echo -e "  ${CYAN}-- HAPUS --${NC}"
-    echo "  [1] Hapus Xiaomi/MIUI bloatware (21 apps)"
+    echo "  [1] Hapus Xiaomi/MIUI bloatware (20 apps)"
     echo "  [2] Hapus Facebook bloatware (3 apps)"
     echo "  [3] Hapus Microsoft bloatware (3 apps) - fitur Link to Windows tidak berfungsi"
     echo "  [4] Hapus Debug/Developer tools (6 apps) - dibutuhkan teknisi jika HP rusak"
     echo "  [5] Hapus Google apps (10 apps) - kecuali Play Store & Gmail"
     echo "  [6] Hapus Theme Manager (1 app) - ⚠️ BACA PERINGATAN"
-    echo "  [7] Hapus SEMUA di atas KECUALI Theme Manager (43 apps)"
+    echo "  [7] Hapus SEMUA di atas KECUALI Theme Manager (42 apps)"
     echo ""
     echo -e "  ${CYAN}-- RESTORE --${NC}"
     echo "  [8] Restore Theme Manager"
@@ -352,9 +352,9 @@ show_list() {
     echo ""
     echo -e "${YELLOW}=== DAFTAR BLOATWARE ===${NC}"
     echo ""
-    echo -e "${CYAN}[1] Xiaomi/MIUI (21 apps):${NC}"
+    echo -e "${CYAN}[1] Xiaomi/MIUI (20 apps):${NC}"
     echo "    Iklan, Mi Music, Mi Video, Mi Browser, GetApps, Games,"
-    echo "    Mi Health, QR Scanner, dll (Gallery TIDAK dihapus)"
+    echo "    Mi Health, QR Scanner, dll"
     echo ""
     echo -e "${CYAN}[2] Facebook (3 apps):${NC}"
     echo "    App Manager, Services, System"
@@ -381,6 +381,7 @@ show_list() {
     echo "    Play Store, Play Services, Hey Google, Gmail"
     echo "    Mi Account, Find Device, Kamera, Screenshot"
     echo "    AI Vision, AI Subtitles, Translate, MIUI Gallery"
+    echo "    Xiaomi Discover (diperlukan untuk Update System Apps)"
     echo ""
 }
 
@@ -404,7 +405,7 @@ main() {
         case $choice in
             1)
                 echo ""
-                echo -e "${YELLOW}[!] Menghapus Xiaomi/MIUI bloatware (21 apps)...${NC}"
+                echo -e "${YELLOW}[!] Menghapus Xiaomi/MIUI bloatware (20 apps)...${NC}"
                 remove_all
                 show_summary
                 ;;
@@ -434,7 +435,7 @@ main() {
                 ;;
             7)
                 echo ""
-                echo -e "${YELLOW}[!] Menghapus SEMUA bloatware (43 apps)...${NC}"
+                echo -e "${YELLOW}[!] Menghapus SEMUA bloatware (42 apps)...${NC}"
                 remove_everything
                 show_summary
                 ;;
